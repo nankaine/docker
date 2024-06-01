@@ -38,5 +38,6 @@ jobs:
             linux/arm/v7
         push: true
         # tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.GITHUB_REPOSITORY_NAME_PART }}:latest
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/testaction:latest
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/testaction:testaction
+        tags: |
+          ${{ secrets.DOCKERHUB_USERNAME }}/testaction:latest
+          ${{ secrets.DOCKERHUB_USERNAME }}/testaction:testaction
