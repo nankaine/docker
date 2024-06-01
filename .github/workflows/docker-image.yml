@@ -7,6 +7,9 @@ on:
     branches: [ "main" ]
   workflow_dispatch:  
 
+env:
+  DOCKER_HUB_REPOSITORY: testaction
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -39,5 +42,5 @@ jobs:
         push: true
         # tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.GITHUB_REPOSITORY_NAME_PART }}:latest
         tags: |
-          ${{ secrets.DOCKERHUB_USERNAME }}/testaction:latest
-          ${{ secrets.DOCKERHUB_USERNAME }}/testaction:testaction
+          ${{ secrets.DOCKERHUB_USERNAME }}/"$DOCKER_HUB_REPOSITORY":latest
+          ${{ secrets.DOCKERHUB_USERNAME }}/"$DOCKER_HUB_REPOSITORY":testaction
