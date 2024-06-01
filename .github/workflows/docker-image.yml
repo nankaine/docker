@@ -29,7 +29,7 @@ jobs:
     -
       name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
-     -
+    -
       name: Set Timezone and Get Date
       run: |
         sudo apt-get install -y tzdata
