@@ -16,4 +16,4 @@ EXPOSE 8000
 
 # 默认命令
 # CMD ["node", "dist/index.js"]
-CMD ["top"]
+CMD ["ping", "127.0.0.1"]
