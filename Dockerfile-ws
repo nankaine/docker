@@ -13,4 +13,4 @@ WORKDIR /ws-scrcpy
 EXPOSE 8000
 
 # 默认命令
-CMD ["npm start"]
+CMD ["node" "dist/index.js"]
