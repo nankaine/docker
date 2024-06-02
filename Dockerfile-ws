@@ -11,7 +11,7 @@ RUN apt update;apt install android-tools-adb -y \
 WORKDIR /ws-scrcpy
 
 # 暴露端口
- EXPOSE 8000
+EXPOSE 8000
 
 # 默认命令
 CMD ["npm start"]
