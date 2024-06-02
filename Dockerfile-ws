@@ -9,7 +9,7 @@ RUN apt update && \
 RUN git clone https://github.com/NetrisTV/ws-scrcpy.git && \
     cd /ws-scrcpy && \
     npm install \
-    npm run dist
+    npm start
 
 # 设置工作目录
 WORKDIR /ws-scrcpy
@@ -18,4 +18,5 @@ WORKDIR /ws-scrcpy
 EXPOSE 8000
 
 # 默认命令
-CMD ["node", "dist/index.js"]
+# CMD ["node", "dist/index.js"]
+CMD ["bash"]
