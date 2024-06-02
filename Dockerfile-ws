@@ -13,4 +13,4 @@ WORKDIR /ws-scrcpy
 EXPOSE 8000
 
 # 默认命令
-CMD ["node" "dist/index.js"]
+CMD ["node", "dist/index.js"]
