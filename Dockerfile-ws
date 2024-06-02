@@ -4,7 +4,7 @@ FROM node:16.20.2-buster
 # 安装 ADB 以及其他必要的包
 RUN apt update \
     apt install android-tools-adb -y \
-    npm install -g node-gyp \
+    npm install -g node-gyp
 
 RUN git clone https://github.com/NetrisTV/ws-scrcpy.git \
     cd ws-scrcpy \
