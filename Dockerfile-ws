@@ -26,4 +26,4 @@ RUN npm run build || echo "No build script found, skipping build step"
 EXPOSE 8000
 
 # 默认命令
-CMD ["node", "dist/index.js"]
+CMD ["node", "/ws-scrcpy/dist/index.js"]
