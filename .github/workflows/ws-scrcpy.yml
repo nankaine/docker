@@ -1,4 +1,4 @@
-name: Docker Image CI ws-scrcpy
+name: Docker Image CI ws-scrcpy node:16.20.2-buster
 
 on:
   # push:
@@ -45,6 +45,8 @@ jobs:
         file: ./Dockerfile-ws
         platforms: |
             linux/amd64
+            linux/arm64
+            linux/arm/v7
         push: true
         tags: |
-          ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_HUB_REPOSITORY }}:wsscrcpy-${{ env.DATE_TAG }}
+          ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_HUB_REPOSITORY }}:wsscrcpy-node-16-20-2-buster-${{ env.DATE_TAG }}
