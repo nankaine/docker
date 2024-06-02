@@ -49,7 +49,4 @@ jobs:
             linux/arm/v7
         push: true
         tags: |
-          # ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_HUB_REPOSITORY }}:latest
-          # ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_HUB_REPOSITORY }}:${{ env.DATE_TAG }}
-          ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_HUB_REPOSITORY }}:latestwsscrcpy
           ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_HUB_REPOSITORY }}:latestwsscrcpy${{ env.DATE_TAG }}
