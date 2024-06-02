@@ -16,11 +16,17 @@ RUN apt update && \
 WORKDIR /ws-scrcpy
 
 # 克隆仓库
-RUN git clone https://github.com/NetrisTV/ws-scrcpy.git . && \
-    # 安装依赖
-    npm install && \
-    # 构建项目，并在构建过程中输出详细信息
-    npm run dist
+RUN git clone https://github.com/NetrisTV/ws-scrcpy.git .
+
+# 安装依赖
+RUN npm install
+
+# 构建项目，并在构建过程中输出详细信息
+# RUN npm run build || { echo 'Build failed'; exit 1; }
+RUN npm run dist
+
+# 确认文件已存在
+RUN ls -al /ws-scrcpy/dist || { echo 'dist directory not found'; exit 1; }
 
 # 暴露端口
 EXPOSE 8000
