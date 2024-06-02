@@ -11,7 +11,7 @@ RUN git clone https://github.com/NetrisTV/ws-scrcpy.git \
     npm install
 
 # 设置工作目录
-WORKDIR ws-scrcpy
+WORKDIR /ws-scrcpy
 
 # 暴露端口
 EXPOSE 8000
