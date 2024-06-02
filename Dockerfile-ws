@@ -9,11 +9,14 @@ RUN apt update && \
 # 设置工作目录
 WORKDIR /ws-scrcpy
 
-RUN git clone https://github.com/NetrisTV/ws-scrcpy.git
+RUN git clone https://github.com/NetrisTV/ws-scrcpy.git && \
+    cd ws-scrcpy && \
+    npm install
+    
 
 # 暴露端口
 EXPOSE 8000
 
 # 默认命令
-# CMD ["node", "dist/index.js"]
-CMD ["ping", "127.0.0.1"]
+CMD ["node", "dist/index.js"]
+# CMD ["ping", "127.0.0.1"]
