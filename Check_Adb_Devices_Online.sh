@@ -11,7 +11,7 @@ else
 fi
 
 # 是否自动重连
-if [ "AUTO_CONNETC" == 1 ]; then
+if [ "$AUTO_CONNECT" = "true" ]; then
     # 无限循环
     while true
     do
