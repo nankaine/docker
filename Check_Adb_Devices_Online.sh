@@ -10,28 +10,37 @@ else
     touch adbonline.log
 fi
 
-# 无限循环
-while true
-do
-	adb devices | grep device | grep -v devices | awk -F':' '{print $1}' > adbonline.log
-    # 使用 while 循环和 read 命令逐行读取文件
-    while IFS= read -r line
+# 是否自动重连
+if [ "ATUO-CONNETC" == 1 ]; then
+    # 无限循环
+    while true
     do
-        # 将当前行赋值给变量
-        current_line="$line"
-        
-        if [ -n "$current_line" ]; then
-        	ping -q -c 10 "$current_line"
-        	if [ $? == 0 ]; then
-        		echo "网络正常,开始链接: " "$current_line"
-    			adb connect "$current_line":5555
-            else
-                echo "网络异常,不进行链接~"
-    		fi	
-		else
-    		echo "无在线设备，不管他"
-		fi
-		sleep 10
-    done < adbonline.log
-    sleep 30
-done
+    	adb devices | grep device | grep -v devices | awk -F':' '{print $1}' > adbonline.log
+        # 使用 while 循环和 read 命令逐行读取文件
+        while IFS= read -r line
+        do
+            # 将当前行赋值给变量
+            current_line="$line"
+            
+            if [ -n "$current_line" ]; then
+            	ping -q -c 10 "$current_line"
+            	if [ $? == 0 ]; then
+            		echo "网络正常,开始链接: " "$current_line"
+        			adb connect "$current_line":5555
+                else
+                    echo "网络异常,不进行链接~"
+        		fi	
+    		else
+        		echo "无在线设备，不管他"
+    		fi
+    		sleep 10
+        done < adbonline.log
+        sleep 30
+    done
+else
+    while true
+    do
+        echo "不自动重连"
+        sleep 3600
+    done
+fi
