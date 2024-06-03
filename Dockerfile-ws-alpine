@@ -16,7 +16,7 @@ LABEL maintainer="MaxDuke <maxduke@gmail.com>"
 ENV AUTO_CONNECT=true
 
 COPY --from=builder /ws-scrcpy/dist /root/ws-scrcpy
-RUN apk add --no-cache android-tools npm && wget -q https://raw.githubusercontent.com/nankaine/docker/main/Check_Adb_Devices_Online.sh -p /root/ws-scrcpy && chmod +x /root/ws-scrcpy/Check_Adb_Devices_Online.sh
+RUN apk add --no-cache android-tools npm && wget -q https://raw.githubusercontent.com/nankaine/docker/main/Check_Adb_Devices_Online.sh -P /root/ws-scrcpy && chmod +x /root/ws-scrcpy/Check_Adb_Devices_Online.sh
 
 WORKDIR /root/ws-scrcpy
 # CMD ["npm", "start"]
