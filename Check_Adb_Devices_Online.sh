@@ -1,5 +1,5 @@
 #!/bin/bash
-nohup node /root/ws-scrcpy/dist/index.js > /dev/null 2>&1 &
+nohup node /root/ws-scrcpy/index.js > /dev/null 2>&1 &
 cd /root/ws-scrcpy
 
 # 创建在线文件
@@ -12,6 +12,8 @@ fi
 
 # 是否自动重连
 if [ "$AUTO_CONNECT" = "true" ]; then
+    echo "开启自动重连模式"
+    sleep 20
     # 无限循环
     while true
     do
@@ -24,7 +26,7 @@ if [ "$AUTO_CONNECT" = "true" ]; then
             
             if [ -n "$current_line" ]; then
             	ping -q -c 10 "$current_line"
-            	if [ $? == 0 ]; then
+            	if [ "$?" == 0 ]; then
             		echo "网络正常,开始链接: " "$current_line"
         			adb connect "$current_line":5555
                 else
@@ -40,7 +42,7 @@ if [ "$AUTO_CONNECT" = "true" ]; then
 else
     while true
     do
-        echo "不自动重连"
+        echo "关闭自动重连模式"
         sleep 3600
     done
-fi        
+fi
