@@ -1,7 +1,8 @@
 FROM alpine:3.14 AS builder
 
 # 安装依赖并克隆项目
-RUN apk add --no-cache nodejs npm python3 make g++ git bash && \
+RUN apk add --no-cache nodejs npm python3 make g++ git bash tzdata && \
+    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone && \
     git clone https://github.com/maxduke/ws-scrcpy.git
 
 WORKDIR /ws-scrcpy
