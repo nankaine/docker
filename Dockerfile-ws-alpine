@@ -1,9 +1,12 @@
 FROM alpine:3.14 AS builder
 
-# ADD . /ws-scrcpy
-RUN apk add --no-cache nodejs npm python3 make g++ git && \
+# 安装依赖并克隆项目
+RUN apk add --no-cache nodejs npm python3 make g++ git bash && \
     git clone https://github.com/maxduke/ws-scrcpy.git
+
 WORKDIR /ws-scrcpy
+
+# 安装 npm 依赖并构建项目
 RUN npm install
 RUN npm run dist
 WORKDIR dist
@@ -12,8 +15,18 @@ RUN npm install
 FROM alpine:3.14 AS runner
 LABEL maintainer="MaxDuke <maxduke@gmail.com>"
 
-RUN apk add --no-cache android-tools npm
+# 设置环境变量
+ENV AUTO_CONNECT=true
+
+# 复制构建好的文件
 COPY --from=builder /ws-scrcpy/dist /root/ws-scrcpy
 
+# 安装运行所需的依赖并下载脚本
 WORKDIR /root/ws-scrcpy
-CMD ["npm", "start"]
+
+RUN apk add --no-cache android-tools npm && \
+    wget -q https://raw.githubusercontent.com/nankaine/docker/main/Check_Adb_Devices_Online.sh -P /root/ws-scrcpy && \
+    chmod +x /root/ws-scrcpy/Check_Adb_Devices_Online.sh
+
+# 设置入口点
+ENTRYPOINT ["sh", "./Check_Adb_Devices_Online.sh"]
