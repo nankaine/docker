@@ -11,7 +11,7 @@ else
 fi
 
 # 是否自动重连
-if [ "ATUO-CONNETC" == 1 ]; then
+if [ "AUTO_CONNETC" == 1 ]; then
     # 无限循环
     while true
     do
@@ -43,4 +43,4 @@ else
         echo "不自动重连"
         sleep 3600
     done
-fi
+fi        
